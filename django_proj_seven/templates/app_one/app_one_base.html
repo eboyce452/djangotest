@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+<head>
+    <title></title>
+    <link rel='stylesheet' href='{% static "sitepackages/bootstrap.min.css" %}'>
+
+    <link rel='stylesheet' href='{% static "css/app_one/app_one.css" %}'>
+    
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+</head>
+
+<body>
+
+    <!-- Insert repeated body code here -->
+
+    <nav class = 'navbar navbar-default navbar-static-top'>
+        <div class = 'container'>
+            <ul class = 'nav navbar-nav'>
+                <li><a class = 'navbar-brand' href="{% url 'index' %}">DJANGO</a></li>
+                <li><a class = 'navbar-link' href="{% url 'admin:index' %}">ADMIN</a></li>
+                <li><a class = 'navbar-link' href="{% url 'app_one:register' %}">REGISTER</a></li>
+
+                {% if user.is_authenticated %}
+                    <li><a class = 'navbar-link' href="{% url 'logout' %}">LOGOUT</a></li>
+                {% else %}
+                    <li><a class='navbar-link' href="{% url 'app_one:user_login' %}">LOGIN</a></li>
+                {% endif %}
+            </ul>
+        </div>        
+    </nav>
+
+    <div>
+        {% block body_block %}
+        <!-- Anything outside of this will be inherited if you extend -->
+        {% endblock %}
+    </div>
+
+    <script src='{% static "sitepackages/jquery.min.js" %}'></script>
+    <script src='{% static "sitepackages/popper.min.js" %}'></script>
+    <script src='{% static "sitepackages/bootstrap.min.js" %}'></script>
+
+    <script src='{% static "js/app_one/app_one.js" %}'></script>
+</body>
+
+</html>

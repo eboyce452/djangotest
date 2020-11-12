@@ -1,0 +1,22 @@
+{% extends "app_one/app_one_base.html" %}
+
+{% load app_one_custom_tags %}
+
+{% block body_block %}
+    <!-- Add in your body html for this page here -->
+    <div class= 'jumbotron'>
+    	{% if registered %}
+    		<h1>Thank you for registering</h1>
+    	{% else %}
+    		<h1>Register Here!</h1>
+    		<h3>Fill out the form: </h3>
+
+    		<form enctype="multipart/form-data" method="POST">
+    			{% csrf_token %}
+    			{{ user_form.as_p }}
+    			{{ profile_form.as_p }}
+    			<input type="submit" name="" value ='Register'>
+    		</form>
+    	{% endif %}
+    </div>
+{% endblock %}
